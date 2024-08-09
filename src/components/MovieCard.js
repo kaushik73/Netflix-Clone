@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 const MovieCard = ({ movie }) => {
   const navigate = useNavigate();
   const handleMovieCardClick = (movieId) => {
-    console.log(movieId, "handleMovieCardClick");
-
     // dispatch(addDisplayMovie(data));
     navigate(`/detail/${movieId}`);
   };

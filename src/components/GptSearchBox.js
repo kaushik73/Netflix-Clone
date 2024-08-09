@@ -6,6 +6,7 @@ import { client } from "../utils/openai";
 const GptSearchBox = () => {
   const selectedLanguage = useSelector((store) => store.config.lang);
   const searchText = useRef(null);
+
   const handleGptInputSearch = async () => {
     const searchQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
@@ -32,7 +33,7 @@ const GptSearchBox = () => {
             className=" bg-slate-100 mx-2 p-4 rounded-md from-neutral-950 text-lg"
             onClick={handleGptInputSearch}
           >
-            Search
+            {lang[selectedLanguage].search}
           </button>
         </div>
       </div>

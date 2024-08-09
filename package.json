@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "tailwindcss": "^3.4.7",
+    "@babel/plugin-proposal-private-property-in-object": "^7.1.0",
     "@reduxjs/toolkit": "^2.2.7",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -41,7 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "tailwindcss": "^3.4.7"
-  }
+  "devDependencies": {}
 }

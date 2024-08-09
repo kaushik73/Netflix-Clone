@@ -1,22 +1,21 @@
 import { useEffect } from "react";
-import { API_OPTIONS } from "../utils/constants";
-import { useDispatch } from "react-redux";
-import { addUpcommingMovies } from "../utils/movieSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addUpcommingMovies } from "../utils/store/movieSlice";
+import { getTMDBApiData } from "../utils/common";
 
 const useUpcommingMovies = () => {
   const dispatch = useDispatch();
-
+  const topRatedMovies = useSelector((store) => store.movies.topRatedMovies);
   const getUpcommingMovies = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/upcoming?&page=1",
-      API_OPTIONS
+    const jsonData = await getTMDBApiData(
+      "https://api.themoviedb.org/3/movie/upcoming?&page=1"
     );
-    const json = await data.json();
-    dispatch(addUpcommingMovies(json.results));
+
+    dispatch(addUpcommingMovies(jsonData));
   };
 
   useEffect(() => {
-    getUpcommingMovies();
+    !topRatedMovies && getUpcommingMovies();
   }, []);
 };
 

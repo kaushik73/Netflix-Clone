@@ -2,8 +2,6 @@ import React from "react";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
-  console.log(movies, "MovieList");
-
   return (
     <div className="bg-black p-2">
       {/* One Container */}
@@ -13,8 +11,8 @@ const MovieList = ({ title, movies }) => {
         </h1>
         <div className="grid grid-rows-1 gap-2 grid-flow-col overflow-x-scroll scrollbar-none scrollbar-hide ">
           {movies?.map((movie) => (
-            <div className="">
-              <MovieCard key={movie.id} movie={movie} />
+            <div key={movie.id}>
+              <MovieCard movie={movie} />
             </div>
           ))}
         </div>

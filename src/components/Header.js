@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useSelector, useDispatch } from "react-redux";
-import { addUser, removeUser } from "../utils/userSlice";
+import { addUser, removeUser } from "../utils/store/userSlice";
 import { onAuthStateChanged } from "firebase/auth";
-import { toggleGptSearchView } from "../utils/gptSlice";
+import { toggleGptSearchView } from "../utils/store/gptSlice";
 import { SUPPORTED_LANGUAGES } from "../utils/constants";
-import { changeLanguage } from "../utils/configSlice";
+import { changeLanguage } from "../utils/store/configSlice";
 import lang from "../utils/languageConstants";
 
 const Header = () => {

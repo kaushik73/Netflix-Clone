@@ -13,10 +13,6 @@ const MovieDetail = () => {
   if (error) return <div className="text-red-500">Error: {error}</div>;
   if (!movieDetail)
     return <div className="text-white">No movie details available</div>;
-  console.log(
-    IMAGE_URL_FOR_DETAIL_PAGE + movieDetail.backdrop_path,
-    "Image URL"
-  );
 
   return (
     <div className="relative">

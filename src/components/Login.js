@@ -15,7 +15,7 @@ import {
 } from "../utils/validations";
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
-import { addUser } from "../utils/userSlice";
+import { addUser } from "../utils/store/userSlice";
 // SignIn = LoginIn
 const Login = () => {
   const [signIn, setSignIn] = useState(true);
@@ -92,7 +92,6 @@ const Login = () => {
               error.push(errorMessage);
               setErrorMsg(error);
             });
-          console.log(user);
 
           // ...
         })
@@ -113,7 +112,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
           // navigate("/browse");
 
           // ...
