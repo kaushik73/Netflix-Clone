@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --red: 223 33 33;
+    --light-red: 198 03 03;
+    --red-hover: 78 06 20;
+    --dark-mode-blue: 10 132 255;
+  }
+  .dark {
+    --red: var(
+      --dark-mode-blue
+    ); /* Change red button to dark mode blue in dark mode */
+  }
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
