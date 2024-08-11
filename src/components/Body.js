@@ -4,6 +4,9 @@ import Browse from "./Browse";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Error from "./Error";
 import MovieDetail from "./MovieDetail";
+import CastDetail from "./castDetail";
+import Footer from "./Footer";
+import Header from "./Header";
 
 const Body = () => {
   const appRoutes = createBrowserRouter([
@@ -14,15 +17,23 @@ const Body = () => {
     {
       path: "/browse",
       element: <Browse />,
-      // children: [
-      // ],
     },
     {
       path: "detail/:movieId",
-      element: <MovieDetail />,
+      element: (
+        <>
+          {/* <Header /> */}
+          <MovieDetail />
+          <Footer />,
+        </>
+      ),
     },
     {
-      path: "/error",
+      path: "cast/:personId",
+      element: <CastDetail />,
+    },
+    {
+      path: "*",
       element: <Error />,
     },
   ]);

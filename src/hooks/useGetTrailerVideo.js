@@ -2,14 +2,15 @@ import { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 import { addTrailerVideo } from "../utils/store/movieSlice";
-import { API_OPTIONS } from "../utils/constants";
+import { API_OPTIONS, TMDB_MOVIE_URL } from "../utils/constants";
 
-const useGetTrailerVideo = (videoId) => {
-  const dispatch = useDispatch(videoId);
+const useGetTrailerVideo = ({ videoId, isFromBrowsePage }) => {
+  const dispatch = useDispatch();
+  console.log(videoId, isFromBrowsePage);
 
   const getVideo = async () => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/movie/" + videoId + "/videos",
+      `${TMDB_MOVIE_URL}/${videoId}/videos`,
       API_OPTIONS
     );
     const json = await data.json();
@@ -20,8 +21,9 @@ const useGetTrailerVideo = (videoId) => {
 
     // if not found any trailer take the 1st video :
     const trailer = filterVideos?.length ? filterVideos[0] : json.results[0];
-
-    dispatch(addTrailerVideo(trailer));
+    if (isFromBrowsePage === true) {
+      dispatch(addTrailerVideo(trailer));
+    }
   };
 
   useEffect(() => {

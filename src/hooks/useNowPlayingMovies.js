@@ -1,22 +1,13 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { NOW_PLAYING_MOVIES_URL } from "../utils/constants";
 import { addNowPlayingMovies } from "../utils/store/movieSlice";
-import { getTMDBApiData } from "../utils/common";
+import useFetchMovies from "./useFetchMovies";
 
 const useNowPlayingMovies = () => {
-  const dispatch = useDispatch();
-  const topRatedMovies = useSelector((store) => store.movies.topRatedMovies);
-  const getNowPlayingMovies = async () => {
-    const jsonData = await getTMDBApiData(
-      "https://api.themoviedb.org/3/movie/now_playing?&page=1"
-    );
-
-    dispatch(addNowPlayingMovies(jsonData));
-  };
-
-  useEffect(() => {
-    !topRatedMovies && getNowPlayingMovies();
-  }, []);
+  return useFetchMovies(
+    NOW_PLAYING_MOVIES_URL,
+    addNowPlayingMovies,
+    (store) => store.movies.nowPlayingMovies
+  );
 };
 
 export default useNowPlayingMovies;

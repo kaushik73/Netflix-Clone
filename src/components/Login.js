@@ -79,21 +79,15 @@ const Login = () => {
             photoURL: "https://example.com/jane-q-user/profile.jpg",
           })
             .then(() => {
-              // Profile updated!
               const { uid, email, displayName } = auth.currentUser;
               dispatch(addUser({ uid, email, displayName })); // ...
-              // navigate("/");
             })
             .catch((err) => {
-              // An error occurred
-              // ...
               const errorMessage = err.message;
               let error = [];
               error.push(errorMessage);
               setErrorMsg(error);
             });
-
-          // ...
         })
         .catch((err) => {
           const errorMessage = err.message;
@@ -112,7 +106,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          // navigate("/browse");
 
           // ...
         })
@@ -134,7 +127,7 @@ const Login = () => {
         <div className="flex items-center justify-center">
           <form
             onSubmit={handleFormSubmit}
-            className="bg-black py-10 px-5 h-full w-[70%] md:w-[25%] mx-2 flex flex-col gap-5 rounded-md bg-opacity-70"
+            className="bg-black py-10 px-5 h-full w-[70%] md:w-[30%] mx-2 flex flex-col gap-5 rounded-md bg-opacity-70"
           >
             <p className="text-white text-4xl mb-4">
               {signIn ? "Sign In" : "Sign Up"}
@@ -204,7 +197,7 @@ const Login = () => {
             </p>
           </form>
         </div>
-        <div className=" overflow-hidden">
+        <div className="overflow-hidden">
           <Footer />
         </div>
       </div>

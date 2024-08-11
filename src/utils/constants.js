@@ -18,6 +18,9 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "sanskrit", name: "Sanskrit" },
 ];
 
-export const OPENAI_KEY =
-  process.env.REACT_APP_OPENAI_KEY ||
-  "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";
+export const TMDB_MOVIE_URL = "https://api.themoviedb.org/3/movie";
+export const TMDB_SEARCH_URL = "https://api.themoviedb.org/3/search";
+export const NOW_PLAYING_MOVIES_URL = `${TMDB_MOVIE_URL}/now_playing?&page=1`;
+export const POPULAR_MOVIES_URL = `${TMDB_MOVIE_URL}/popular`;
+export const TOP_RATED_MOVIES_URL = `${TMDB_MOVIE_URL}/top_rated?&page=1`;
+export const UPCOMMING_MOVIES_URL = `${TMDB_MOVIE_URL}/upcoming?&page=1`;
