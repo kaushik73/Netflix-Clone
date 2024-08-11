@@ -1,3 +1,3 @@
 # Netflix-Clone
 
-A Netflix Clone integrated with search powers of chatgpt
+A Netflix Clone integrated with power of TMDB API
