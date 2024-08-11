@@ -18,7 +18,7 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/store/userSlice";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 // SignIn = LoginIn
 const Login = () => {
   const [signIn, setSignIn] = useState(true);
@@ -30,9 +30,9 @@ const Login = () => {
 
   const [errorMsg, setErrorMsg] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleLogoClick = () => {};
+  // const handleLogoClick = () => {};
 
   const handleSignUpSignInButton = () => {
     setSignIn(!signIn);
@@ -205,12 +205,12 @@ const Login = () => {
         </form>
       </div>
       {/* </div> */}
-      <div
+      {/* <div
         className="absolute top-0 left-2 flex items-center cursor-pointer"
         onClick={() => handleLogoClick()}
       >
         <img src={netflixLogo} alt="logo" className="w-24 md:w-36" />
-      </div>
+      </div> */}
     </>
   );
 };
