@@ -19,7 +19,7 @@ const CastCard = ({ personDetail }) => {
         <img
           src={`https://image.tmdb.org/t/p/w500${personDetail?.profile_path}`}
           alt={personDetail.name}
-          className="w-full h-60 object-cover rounded-md mb-4"
+          className="w-full h-50 sm:h-60 object-cover rounded-md mb-4"
         />
         <h3 className="text-lg font-bold">{personDetail.name}</h3>
         <p className="text-sm text-gray-400">

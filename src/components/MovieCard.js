@@ -16,12 +16,12 @@ const MovieCard = ({ movie, isDarkMode = false }) => {
     movie &&
     movie.poster_path !== null && (
       <div
-        className="rounded-lg sm:w-48 w-36 mr-3 cursor-pointer  h-[280px] relative group hover:overflow-hidden "
+        className="rounded-lg sm:w-48 w-36 mr-3 cursor-pointer  h-[200px] sm:h-[280px] relative group hover:overflow-hidden "
         onClick={() => handleMovieCardClick(movie.id)}
       >
         <div className="group-hover:scale-110 ">
           <img
-            className="rounded-lg h-[280px]"
+            className="rounded-lg  h-[200px] sm:h-[280px]"
             src={IMAGE_URL + movie?.poster_path}
             alt={movie?.original_title}
           />

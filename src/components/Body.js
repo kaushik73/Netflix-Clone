@@ -22,9 +22,7 @@ const Body = () => {
       path: "detail/:movieId",
       element: (
         <>
-          {/* <Header /> */}
           <MovieDetail />
-          <Footer />,
         </>
       ),
     },

@@ -49,11 +49,11 @@ const MovieDetail = () => {
             className="w-full h-60 object-cover"
           />
 
-          <div className="absolute top-1/2 left-0 right-0 flex flex-col md:flex-row items-center md:items-start md:justify-between p-4 bg-gradient-to-t from-black via-black to-transparent">
+          <div className="sm:absolute top-1/2 left-0 right-0 flex flex-col md:flex-row items-center md:items-start md:justify-between p-4 bg-gradient-to-t from-black via-black to-transparent">
             <img
               src={`${IMAGE_URL + movieDetail.poster_path}`}
               alt={movieDetail.title}
-              className="w-40 md:w-60 mb-4 md:mb-0 rounded-lg shadow-lg "
+              className="w-40 hidden md:block md:w-60 mb-4 md:mb-0 rounded-lg shadow-lg "
             />
             <div className="max-w-2xl md:ml-6 mr-[20%]">
               <h1 className="text-3xl md:text-4xl font-bold mb-2">
@@ -92,7 +92,7 @@ const MovieDetail = () => {
           </div>
         </div>
         {/* Filters */}
-        <div className="pt-[30%] flex gap-4 justify-center">
+        <div className="mt-0 sm:pt-[30%] flex flex-wrap gap-4 justify-center">
           <div
             className={`cursor-pointer px-4 py-2 rounded-lg  ${
               showReviews ? "bg-gray-200 text-black" : "bg-gray-800 text-white"
@@ -110,7 +110,7 @@ const MovieDetail = () => {
             onClick={() => setShowRecommended(!showRecommended)}
           >
             <p>See Recommended Movies</p>
-            {showRecommended && <span className="top-0">Opened ⬇️</span>}
+            {showRecommended && <span className="top-0"></span>}
           </div>
           <div
             className={`cursor-pointer px-4 py-2 rounded-lg  ${

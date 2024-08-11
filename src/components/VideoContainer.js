@@ -13,7 +13,7 @@ const VideoContainer = () => {
 
   return (
     <div className="relative">
-      <VideoTitle title={title} overview={overview} />
+      <VideoTitle title={title} overview={overview} movieId={id} />
       <VideoBackground videoId={id} />
     </div>
   );

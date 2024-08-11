@@ -14,7 +14,7 @@ const MovieList = ({
       <div className="">
         {!isMovieRecommended && (
           <>
-            <h1 className=" text-xl md:text-3xl font-semibold pb-2 mt-[0] px-3 text-white z-10">
+            <h1 className=" bg-gray-600 text-xl md:text-2xl font-semibold my-2 p-1 px-3 text-white z-10">
               {title} :
             </h1>
             <div className="grid grid-rows-1 gap-2 grid-flow-col  overflow-x-scroll scrollbar-none scrollbar-hide ">
@@ -28,7 +28,7 @@ const MovieList = ({
         )}
         {isMovieRecommended && (
           <>
-            <div className="flex justify-center ">
+            <div className="">
               <h1
                 className={`d-flex justify-center text-xl md:text-3xl font-semibold pb-2 mt-[0] px-3 z-10 ${
                   isDarkMode ? "text-gray-200" : "text-white"

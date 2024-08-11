@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import netflixLogo from "../Images/Netflix_Logo.png";
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -16,6 +18,7 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/store/userSlice";
+import { useNavigate } from "react-router-dom";
 // SignIn = LoginIn
 const Login = () => {
   const [signIn, setSignIn] = useState(true);
@@ -26,6 +29,10 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const [errorMsg, setErrorMsg] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {};
 
   const handleSignUpSignInButton = () => {
     setSignIn(!signIn);
@@ -66,6 +73,7 @@ const Login = () => {
 
     if (!signIn) {
       // signup in firebase :
+      setIsLoading(true);
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
@@ -80,7 +88,7 @@ const Login = () => {
           })
             .then(() => {
               const { uid, email, displayName } = auth.currentUser;
-              dispatch(addUser({ uid, email, displayName })); // ...
+              dispatch(addUser({ uid, email, displayName }));
             })
             .catch((err) => {
               const errorMessage = err.message;
@@ -106,6 +114,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
+          setIsLoading(true);
 
           // ...
         })
@@ -120,86 +129,87 @@ const Login = () => {
 
   return (
     <>
-      <div className="w-full h-screen bg-bgBody bg-cover bg-no-repeat flex flex-col justify-between">
-        <div className=" bg-slate-900 z-30 w-full">
-          <Header />
-        </div>
-        <div className="flex items-center justify-center">
-          <form
-            onSubmit={handleFormSubmit}
-            className="bg-black py-10 px-5 h-full w-[70%] md:w-[30%] mx-2 flex flex-col gap-5 rounded-md bg-opacity-70"
-          >
-            <p className="text-white text-4xl mb-4">
-              {signIn ? "Sign In" : "Sign Up"}
-            </p>
-            {!signIn ? (
-              <input
-                type="text"
-                ref={userName}
-                placeholder="Full name"
-                className="text-white placeholder:text-white p-2 bg-gray-500 mb-4 px-5 rounded-md"
-              />
-            ) : null}
-            {!signIn ? (
-              <input
-                type="number"
-                ref={phoneNumber}
-                placeholder="Mobile number"
-                className="text-white placeholder:text-white p-2 bg-gray-500 mb-4 px-5 rounded-md"
-              />
-            ) : null}
+      {/* <div className="w-full min-h-screen bg-bgBody bg-cover bg-no-repeat flex flex-col justify-between"> */}
+      <Header />
+      <div className="flex items-center justify-center w-full min-h-screen bg-bgBody bg-cover bg-no-repeat">
+        <form
+          onSubmit={handleFormSubmit}
+          className="bg-black py-5 px-5 h-full w-[70%] md:w-[30%] mx-2 flex flex-col gap-5 rounded-md bg-opacity-70"
+        >
+          <p className="text-white text-4xl mb-4">
+            {signIn ? "Sign In" : "Sign Up"}
+          </p>
+          {!signIn ? (
             <input
-              ref={email}
               type="text"
-              placeholder="Email"
+              ref={userName}
+              placeholder="Full name"
               className="text-white placeholder:text-white p-2 bg-gray-500 mb-4 px-5 rounded-md"
             />
-
+          ) : null}
+          {!signIn ? (
             <input
-              ref={password}
-              type="text"
-              placeholder="Password"
-              className="text-white placeholder:text-white p-2 mb-0 bg-gray-500 px-5 rounded-md"
+              type="number"
+              ref={phoneNumber}
+              placeholder="Mobile number"
+              className="text-white placeholder:text-white p-2 bg-gray-500 mb-4 px-5 rounded-md"
             />
-            {errorMsg.length !== 0 ? (
-              <div className="text-red-500 text-lg text-center font-semibold">
-                <p>{errorMsg[0]}</p>
-              </div>
-            ) : null}
-            <button
-              type="submit"
-              className="font-semibold bg-[rgb(var(--red))] hover:bg-[rgb(var(--red-hover))]  mt-2 text-white rounded-md p-2"
-            >
-              {signIn ? "Sign In" : "Sign Up"}
-            </button>
-            <p className="text-xl  text-white text-center">
-              {signIn ? (
-                <span>
-                  New to Netflix GPT ? &nbsp;
-                  <span
-                    onClick={handleSignUpSignInButton}
-                    className="ml-1 text-xl md:ml-0 cursor-pointer text-[rgb(var(--light-red))]"
-                  >
-                    Sign Up !
-                  </span>
+          ) : null}
+          <input
+            ref={email}
+            type="text"
+            placeholder="Email"
+            className="text-white placeholder:text-white p-2 bg-gray-500 mb-4 px-5 rounded-md"
+          />
+
+          <input
+            ref={password}
+            type="text"
+            placeholder="Password"
+            className="text-white placeholder:text-white p-2 mb-0 bg-gray-500 px-5 rounded-md"
+          />
+          {errorMsg.length !== 0 ? (
+            <div className="text-red-500 text-lg text-center font-semibold">
+              <p>{errorMsg[0]}</p>
+            </div>
+          ) : null}
+          <button
+            type="submit"
+            className="font-semibold bg-[rgb(var(--red))] hover:bg-[rgb(var(--red-hover))]  mt-2 text-white rounded-md p-2"
+          >
+            {!isLoading ? (signIn ? "Sign In" : "Sign Up") : "Loading..."}
+          </button>
+          <p className="text-xl  text-white text-center">
+            {signIn ? (
+              <span>
+                New to My Netflix ? &nbsp;
+                <span
+                  onClick={handleSignUpSignInButton}
+                  className="ml-1 text-xl md:ml-0 cursor-pointer text-[rgb(var(--light-red))]"
+                >
+                  Sign Up !
                 </span>
-              ) : (
-                <span className="">
-                  Already a User ?{" "}
-                  <span
-                    onClick={handleSignUpSignInButton}
-                    className="text-[rgb(var(--light-red))]  cursor-pointer"
-                  >
-                    Sign In !
-                  </span>
+              </span>
+            ) : (
+              <span className="">
+                Already a User ?{" "}
+                <span
+                  onClick={handleSignUpSignInButton}
+                  className="text-[rgb(var(--light-red))]  cursor-pointer"
+                >
+                  Sign In !
                 </span>
-              )}
-            </p>
-          </form>
-        </div>
-        <div className="overflow-hidden">
-          <Footer />
-        </div>
+              </span>
+            )}
+          </p>
+        </form>
+      </div>
+      {/* </div> */}
+      <div
+        className="absolute top-0 left-2 flex items-center cursor-pointer"
+        onClick={() => handleLogoClick()}
+      >
+        <img src={netflixLogo} alt="logo" className="w-24 md:w-36" />
       </div>
     </>
   );
