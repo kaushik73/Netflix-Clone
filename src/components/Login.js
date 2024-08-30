@@ -38,7 +38,31 @@ const Login = () => {
     setSignIn(!signIn);
   };
 
+  const handleGuestLogin = () => {
+    handleFormSubmit("guest");
+  };
+
   const handleFormSubmit = (e) => {
+    if (e === "guest") {
+      console.log("Guest login");
+      signInWithEmailAndPassword(auth, "guest@gmail.com", "Guest@12345")
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          setIsLoading(true);
+
+          // ...
+        })
+        .catch((err) => {
+          const errorMessage = err.message;
+          let error = [];
+          error.push(errorMessage);
+          setErrorMsg(error);
+        });
+
+      return;
+    }
+
     e.preventDefault();
 
     let errors = [];
@@ -181,15 +205,24 @@ const Login = () => {
           </button>
           <p className="text-xl  text-white text-center">
             {signIn ? (
-              <span>
-                New to My Netflix ? &nbsp;
+              <div className="flex justify-between">
+                <div>
+                  <span>New to My Netflix ? &nbsp;</span>
+                  <span
+                    onClick={handleSignUpSignInButton}
+                    className="ml-1 text-xl md:ml-0 cursor-pointer text-[rgb(var(--light-red))]"
+                  >
+                    Sign Up !
+                  </span>
+                </div>
                 <span
-                  onClick={handleSignUpSignInButton}
-                  className="ml-1 text-xl md:ml-0 cursor-pointer text-[rgb(var(--light-red))]"
+                  onClick={handleGuestLogin}
+                  className="text-xl text-[rgb(var(--light-red))] md:ml-0 cursor-pointer "
                 >
-                  Sign Up !
+                  {" "}
+                  Login as Guest
                 </span>
-              </span>
+              </div>
             ) : (
               <span className="">
                 Already a User ?{" "}
